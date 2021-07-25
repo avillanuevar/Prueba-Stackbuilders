@@ -1,0 +1,24 @@
+.app-body {
+  position: relative;
+  height: 850px;
+  width: fit-content;
+}
+
+.blue-decor {
+  position: absolute;
+  height: 100px;
+  width: 180px;
+  top:-20px;
+  left: 180px;
+  background-color: #4294d0;
+  z-index: -1;
+}
+.orange-decor {
+  position: absolute;
+  height: 150px;
+  width: 150px;
+  bottom: 280px;
+  right: 10px;
+  background-color: #afd242;
+  z-index: -1;
+}
