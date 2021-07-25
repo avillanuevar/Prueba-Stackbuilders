@@ -9,6 +9,7 @@ class Table extends Component{
             entitiesList: []
         };
     }
+    //sets the property entitiesList.
     static getDerivedStateFromProps(props, state) {
         return {entitiesList: props.entities }
       }

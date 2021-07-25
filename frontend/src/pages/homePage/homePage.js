@@ -13,18 +13,21 @@ class HomePage extends Component{
         }
     }
 
+    //Initialize the property entities and if it's empty the filteredEntities also.
     static getDerivedStateFromProps(props, state) {
         return state.filteredEntities.length ? {entities: props.entities } : 
             {entities: props.entities, filteredEntities: props.entities };
       }
 
-      componentDidUpdate(prevProps, prevState) {
-        if (this.state.pfa !== prevState.pfa || this.state.cfa !== prevState.cfa) {
-            const fiterarray = this._fiterByWordCount();
-            this.setState({ filteredEntities: fiterarray });
-        }
+    //Updates the property filteredEntities when either the points filter or the comments filter is activated.
+    componentDidUpdate(prevProps, prevState) {
+      if (this.state.pfa !== prevState.pfa || this.state.cfa !== prevState.cfa) {
+          const fiterarray = this._fiterByWordCount();
+          this.setState({ filteredEntities: fiterarray });
       }
+    }
 
+    //Function that changes the value of the properties pfa and cfa depending on the filter that is choosen.
     _fiterActivated = (e) => {
         e.preventDefault();
         const filter = e.currentTarget.value;
@@ -42,15 +45,15 @@ class HomePage extends Component{
             default:
                 break;
         }
-        console.log(this.state);
-        
     }
+
+    // Depending on the choosen filter the function will select
+    // wich entries will continue the filtering process. 
 
     _fiterByWordCount() {
         let entitesCopy = [...this.state.entities];
         let filteredArray = [];
-        let { pfa, cfa } = this.state
-        console.log(pfa)
+        let { pfa, cfa } = this.state;
         if(!pfa && !cfa) {
             filteredArray = entitesCopy;
         } else {
@@ -68,6 +71,7 @@ class HomePage extends Component{
         return filteredArray;
     }
 
+    //Final filter that will sort by hier count the comments or the points
     _fiterByPoitsOrComm( cfa, array ) {
         let filterArray = array.sort((a, b) => {
             return cfa ? b.comments - a.comments : b.points - a.points

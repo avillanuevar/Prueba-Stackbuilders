@@ -15,6 +15,7 @@ const titleAndPosition = $('.athing');
 const commentsAndPoints = $('.subtext');
 let entriesArray = [];
 
+//separates the title and position from the HTML and enters then on the array
 titleAndPosition.each( function(idx, value) {
     let title = $(value).find('.storylink').text();
     let rank = $(value).find('.rank').text().split('.')[0];
@@ -24,6 +25,8 @@ titleAndPosition.each( function(idx, value) {
     })
 });
 
+//separates the commments and points from the HTML and asignes 
+//them to it's corresponding object in the array
 commentsAndPoints.each( function(idx, value) {
     let points = $(value).find('.score').text().split(' ')[0];
     let comments = '';
